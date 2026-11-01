@@ -2,6 +2,8 @@
 This file contains ultities and constants for managing windows (sectors of the map).
 """
 
+from map import MAP_HEIGHT, MAP_WIDTH
+
 WINDOW_WIDTH = 80
 WINDOW_HEIGHT = 80
 
@@ -30,5 +32,10 @@ class Window:
         self._window_left_bound = window_left_bound
 
     def xy_to_linear(self, x: int, y: int) -> int:
-
+        assert (
+            self._window_left_bound <= x <= self._window_right_bound
+        ), "coordinate outside of window"
+        assert (
+            self._window_lower_bound <= y <= self._window_upper_bound
+        ), "coordinate outside of window"
         return 0
